@@ -11,7 +11,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import domain.PersonDomainModel;
-import domain.StudentDomainModel;
 import util.HibernateUtil;
 
 public class PersonDAL {
@@ -37,7 +36,7 @@ public class PersonDAL {
 	public static ArrayList<PersonDomainModel> getPersons() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
-		StudentDomainModel perGet = null;
+ 
 		ArrayList<PersonDomainModel> pers = new ArrayList<PersonDomainModel>();
 
 		try {
