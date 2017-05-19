@@ -12,37 +12,53 @@ import org.junit.Test;
 
 import domain.PersonDomainModel;
 
+
 public class Person_Test {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+	private static PersonDomainModel personp;
+	
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+@BeforeClass
+public static void setUpBeforeClass() throws Exception {
 
-	@Before
-	public void setUp() throws Exception {
-	}
+	personp = new PersonDomainModel();
+	
+	personp.setFirstName("Sasha");
+	personp.setLastName("Jones");
+	personp.setCity("Middletown");
+	personp.setPostalCode(54321);
+	personp.setStreet("21 Freefield Dr");
+	
+}
 
-	@After
-	public void tearDown() throws Exception {
-	}
+@Test
+public void AddPersonTest(){
+	PersonDAL.addPerson(personp);
+}
 
-	@Test
-	public void AddPerson() {
-		PersonDomainModel per1 = new PersonDomainModel();
-		per1.setBirthday(new Date(0));
-		per1.setCity("Townsend");
-		per1.setFirstName("Bert");
-		per1.setLastName("Gibbons");
-		per1.setPostalCode(19734);
-		per1.setStreet("214 Labrador Lane");
-		
-		PersonDAL.addPerson(per1);
-		
-		
-	}
+@Test
+public void GetPersonTest(){
+	String LastName = personp.getLastName();
+	assertEquals("Jones",LastName);
+}
+
+@Test
+public void UpdatePersonTest(){
+	personp.setFirstName("Sasha");
+	PersonDAL.updatePerson(personp);
+}
+
+@Test
+public void deletePersontest(){
+	PersonDAL.addPerson(personp);
+}
+
+
+
+@AfterClass
+public static void tearDownAfterClass() throws Exception {
+}
+
 
 }
+
