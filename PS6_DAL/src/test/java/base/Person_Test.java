@@ -18,9 +18,10 @@ public class Person_Test {
 	private static PersonDomainModel personp;
 	
 
-@BeforeClass
-public static void setUpBeforeClass() throws Exception {
 
+
+@Test
+public void AddPersonTest(){
 	personp = new PersonDomainModel();
 	
 	personp.setFirstName("Sasha");
@@ -28,36 +29,63 @@ public static void setUpBeforeClass() throws Exception {
 	personp.setCity("Middletown");
 	personp.setPostalCode(54321);
 	personp.setStreet("21 Freefield Dr");
-	
-}
-
-@Test
-public void AddPersonTest(){
+	personp.setBirthday(new Date());
 	PersonDAL.addPerson(personp);
+	assertEquals(PersonDAL.getPersons().size(),1);
+	PersonDAL.deletePerson(personp.getPersonID());
 }
 
 @Test
 public void GetPersonTest(){
+	personp = new PersonDomainModel();
+	
+	personp.setFirstName("Sasha");
+	personp.setLastName("Jones");
+	personp.setCity("Middletown");
+	personp.setPostalCode(54321);
+	personp.setStreet("21 Freefield Dr");
+	personp.setBirthday(new Date());
 	String LastName = personp.getLastName();
+	PersonDAL.addPerson(personp);
 	assertEquals("Jones",LastName);
+	PersonDAL.deletePerson(personp.getPersonID());
 }
 
 @Test
 public void UpdatePersonTest(){
+	personp = new PersonDomainModel();
+	
 	personp.setFirstName("Sasha");
+	personp.setLastName("Jones");
+	personp.setCity("Middletown");
+	personp.setPostalCode(54321);
+	personp.setStreet("21 Freefield Dr");
+	personp.setBirthday(new Date());
+	PersonDAL.addPerson(personp);
+	personp.setFirstName("Tom");
 	PersonDAL.updatePerson(personp);
+	assertEquals(PersonDAL.getPerson(personp.getPersonID()).getFirstName(),"Tom");
+	PersonDAL.deletePerson(personp.getPersonID());
 }
 
 @Test
 public void deletePersontest(){
+	personp = new PersonDomainModel();
+	
+	personp.setFirstName("Sasha");
+	personp.setLastName("Jones");
+	personp.setCity("Middletown");
+	personp.setPostalCode(54321);
+	personp.setStreet("21 Freefield Dr");
+	personp.setBirthday(new Date());
 	PersonDAL.addPerson(personp);
+	assertEquals(PersonDAL.getPersons().size(),1);
+	PersonDAL.deletePerson(personp.getPersonID());
 }
 
 
 
-@AfterClass
-public static void tearDownAfterClass() throws Exception {
-}
+
 
 
 }

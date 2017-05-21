@@ -73,7 +73,7 @@ public class PersonDAL {
 			tx = session.beginTransaction();	
 									
 			Query query = session.createQuery("from PersonDomainModel where personId = :id ");
-			query.setParameter("id", perID.toString());
+			query.setParameter("id", perID);
 			
 			List<?> list = query.list();
 			perGet = (PersonDomainModel)list.get(0);

@@ -2,25 +2,19 @@ package ch.makery.address.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.UUID;
 
+import domain.PersonDomainModel;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import ch.makery.address.util.LocalDateAdapter;
-import domain.PersonDomainModel;
 
 public class Person extends PersonDomainModel {
 
 	public Person() {
-		this(null, null, null, (Integer) null, null, null);
+        this("First", "Last", "Street", 00000, "City", new Date());
 	}
 
 	public Person(String firstName, String lastName, String street, int postalCode, String city, Object birthday) {
@@ -39,7 +33,8 @@ public class Person extends PersonDomainModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.setBirthday(dBirthDay);
+		
+		this.setBirthday((Date) birthday);
 	}
 
 	public StringProperty getFirstNameProperty() {
